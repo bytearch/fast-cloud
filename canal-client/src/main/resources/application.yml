@@ -1,0 +1,17 @@
+server:
+  port: 8080
+  tomcat:
+    max-threads: 1000
+    accept-count: 1000
+    max-connections: 2000
+
+spring:
+  profiles:
+    active: dev
+  http:
+    encoding:
+      force: true
+      charset: UTF-8
+      enabled: true
+    request:
+      signCheck: true
