@@ -61,6 +61,9 @@ public class ShardingTest {
         Assert.assertNotNull(orderInfo);
         Assert.assertEquals(orderInfo.getOrderId(), orderEntity.getOrderId());
 
+        //get from slave
+        OrderEntity slaveOrderInfo = orderPartitionByIdDao.getOrderById(orderEntity.getOrderId());
+        Assert.assertNotNull(slaveOrderInfo);
         //update
         OrderEntity updateEntity = new OrderEntity();
         updateEntity.setOrderId(orderInfo.getOrderId());
