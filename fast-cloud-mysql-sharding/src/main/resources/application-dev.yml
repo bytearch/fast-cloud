@@ -1,0 +1,65 @@
+mango:
+  scan-package: com.bytearch.fast.cloud.mysql.sharding.dao
+  datasources:
+    - name: order_db_1
+      master:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://172.30.1.21:3306/order_db_1?useUnicode=true&characterEncoding=utf8&autoReconnect=true&rewriteBatchedState&connectTimeout=1000&socketTimeout=5000&useSSL=false
+        user-name: root
+        password: bytearch
+        maximum-pool-size: 10
+        connection-timeout: 3000
+      slaves:
+        - driver-class-name: com.mysql.cj.jdbc.Driver
+          jdbc-url: jdbc:mysql://172.30.1.31:3306/order_db_1?useUnicode=true&characterEncoding=utf8&autoReconnect=true&rewriteBatchedState&connectTimeout=1000&socketTimeout=5000&useSSL=false
+          user-name: root
+          password: bytearch
+          maximum-pool-size: 10
+          connection-timeout: 3000
+    - name: order_db_2
+      master:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://172.30.1.22:3306/order_db_2?useUnicode=true&characterEncoding=utf8&autoReconnect=true&rewriteBatchedState&connectTimeout=1000&socketTimeout=5000&useSSL=false
+        user-name: root
+        password: bytearch
+        maximum-pool-size: 10
+        connection-timeout: 3000
+      slaves:
+        - driver-class-name: com.mysql.cj.jdbc.Driver
+          jdbc-url: jdbc:mysql://172.30.1.32:3306/order_db_2?useUnicode=true&characterEncoding=utf8&autoReconnect=true&rewriteBatchedState&connectTimeout=1000&socketTimeout=5000&useSSL=false
+          user-name: root
+          password: bytearch
+          maximum-pool-size: 10
+          connection-timeout: 3000
+    - name: order_db_3
+      master:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://172.30.1.23:3306/order_db_3?useUnicode=true&characterEncoding=utf8&autoReconnect=true&rewriteBatchedState&connectTimeout=1000&socketTimeout=5000&useSSL=false
+        user-name: root
+        password: bytearch
+        maximum-pool-size: 10
+        connection-timeout: 3000
+      slaves:
+        - driver-class-name: com.mysql.cj.jdbc.Driver
+          jdbc-url: jdbc:mysql://172.30.1.33:3306/order_db_3?useUnicode=true&characterEncoding=utf8&autoReconnect=true&rewriteBatchedState&connectTimeout=1000&socketTimeout=5000&useSSL=false
+          user-name: root
+          password: bytearch
+          maximum-pool-size: 10
+          connection-timeout: 3000
+    - name: order_db_4
+      master:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://172.30.1.24:3306/order_db_4?useUnicode=true&characterEncoding=utf8&autoReconnect=true&rewriteBatchedState&connectTimeout=1000&socketTimeout=5000&useSSL=false
+        user-name: root
+        password: bytearch
+        maximum-pool-size: 10
+        connection-timeout: 3000
+      slaves:
+        - driver-class-name: com.mysql.cj.jdbc.Driver
+          jdbc-url: jdbc:mysql://172.30.1.34:3306/order_db_4?useUnicode=true&characterEncoding=utf8&autoReconnect=true&rewriteBatchedState&connectTimeout=1000&socketTimeout=5000&useSSL=false
+          user-name: root
+          password: bytearch
+          maximum-pool-size: 10
+          connection-timeout: 3000
+logging:
+  config: classpath:logback-spring.xml

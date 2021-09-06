@@ -1,0 +1,15 @@
+package com.bytearch.fast.cloud.mysql.sharding;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication(
+        scanBasePackages = {"com.bytearch.fast.cloud.mysql.sharding"}
+)
+public class Application {
+
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
+}
+

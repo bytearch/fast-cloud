@@ -9,16 +9,19 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>canal-client</module>
+        <module>fast-cloud-stater</module>
+        <module>fast-cloud-mysql-sharding</module>
         <module>fast-cloud-core</module>
+        <module>fast-cloud-test</module>
     </modules>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
-        <spring-boot.version>1.5.9.RELEASE</spring-boot.version>
+        <spring-boot.version>2.1.10.RELEASE</spring-boot.version>
         <lombok.version>1.16.16</lombok.version>
         <mango.version>1.6.0</mango.version>
+        <apache.commons.lang3.version>3.3.2</apache.commons.lang3.version>
     </properties>
 
     <dependencyManagement>
@@ -45,6 +48,44 @@
                 <groupId>org.jfaster</groupId>
                 <artifactId>mango</artifactId>
                 <version>${mango.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jfaster</groupId>
+                <artifactId>mango-spring-boot-starter</artifactId>
+                <version>2.0.1</version>
+            </dependency>
+            <!--add dependency in pom.xml-->
+            <dependency>
+                <groupId>org.apache.rocketmq</groupId>
+                <artifactId>rocketmq-spring-boot-starter</artifactId>
+                <version>2.2.0</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>1.16.16</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.bytearrch</groupId>
+                <artifactId>fast-cloud-id-generator</artifactId>
+                <version>${version}</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${apache.commons.lang3.version}</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>6.0.6</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

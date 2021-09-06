@@ -1,4 +1,9 @@
 .idea/
 canal-client/canal-client.iml
-canal-client/target/
+*/target/
+*.iml
+*/*.iml
+*/*/target/
+
+
 

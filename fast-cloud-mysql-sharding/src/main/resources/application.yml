@@ -1,0 +1,9 @@
+spring:
+  profiles:
+    active: dev
+server:
+  port: 8080
+  tomcat:
+    max-connections: 300
+    max-threads: 300
+    uri-encoding: UTF-8
