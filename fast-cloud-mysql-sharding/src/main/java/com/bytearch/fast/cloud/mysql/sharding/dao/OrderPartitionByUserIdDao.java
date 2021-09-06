@@ -10,6 +10,6 @@ import java.util.List;
 @DB(name = ShardingStrategyConstant.LOGIC_ORDER_DATABASE_NAME, table = "order")
 @Sharding(shardingStrategy = UserIdShardingStrategy.class)
 public interface OrderPartitionByUserIdDao {
-    @SQL("SELECT * FROM #table WHERE order_id = :1")
+    @SQL("SELECT * FROM #table WHERE user_id = :1")
     List<OrderEntity> getOrderListByUserId(@TableShardingBy @DatabaseShardingBy Integer userId);
 }

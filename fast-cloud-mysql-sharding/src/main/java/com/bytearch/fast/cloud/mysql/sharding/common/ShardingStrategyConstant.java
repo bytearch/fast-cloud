@@ -1,7 +1,5 @@
 package com.bytearch.fast.cloud.mysql.sharding.common;
 
-import org.apache.commons.lang3.StringUtils;
-
 /**
  * 分库分表策略常用常量
  */
