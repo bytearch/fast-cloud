@@ -18,7 +18,7 @@ public class OrderIdShardingStrategy implements ShardingStrategy<Long, Long> {
         if (idEntity.getExtraId() >= ShardingStrategyConstant.SHARDING_TABLE_NUM) {
             throw new IllegalArgumentException("sharding table Num is invalid, tableNum:" + idEntity.getExtraId());
         }
-        //1. 计算步长 32 即每个库平均放32张表
+        //1. 计算步长 即单库放的表数量
         int step = ShardingStrategyConstant.SHARDING_TABLE_NUM / ShardingStrategyConstant.SHARDING_DATABASE_NODE_NUM;
         //2. 计算出库编号
         long dbNo = Math.floorDiv(idEntity.getExtraId(), step) + 1;

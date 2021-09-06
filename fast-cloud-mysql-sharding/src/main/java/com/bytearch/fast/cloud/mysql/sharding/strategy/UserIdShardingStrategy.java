@@ -10,7 +10,7 @@ public class UserIdShardingStrategy implements ShardingStrategy<Integer, Integer
 
     @Override
     public String getDataSourceFactoryName(Integer userId) {
-        //1. 计算步长 例如 计算出 = 64 即每个库平均放64张表
+        //1. 计算步长 即单库放得表数量
         int step = ShardingStrategyConstant.SHARDING_TABLE_NUM / ShardingStrategyConstant.SHARDING_DATABASE_NODE_NUM;
         //2. 计算出库编号
         long dbNo = Math.floorDiv(userId % ShardingStrategyConstant.SHARDING_TABLE_NUM, step) + 1;
