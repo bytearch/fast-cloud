@@ -61,6 +61,12 @@ public class ShardingTest {
         Assert.assertNotNull(orderInfo);
         Assert.assertEquals(orderInfo.getOrderId(), orderEntity.getOrderId());
 
+        try {
+            //防止主从延迟引起的校验错误
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         //get from slave
         OrderEntity slaveOrderInfo = orderPartitionByIdDao.getOrderById(orderEntity.getOrderId());
         Assert.assertNotNull(slaveOrderInfo);

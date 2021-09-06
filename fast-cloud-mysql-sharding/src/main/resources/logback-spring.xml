@@ -5,7 +5,7 @@
         </encoder>
     </appender>
 
-    <logger name="org.jfaster.mango" level="debug" additivity="false">
+    <logger name="org.jfaster.mango.jdbc.JdbcTemplate" level="debug" additivity="false">
         <appender-ref ref="STDOUT"/>
     </logger>
 
