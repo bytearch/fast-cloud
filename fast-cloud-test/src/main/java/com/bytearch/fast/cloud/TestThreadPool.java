@@ -7,13 +7,8 @@ public class TestThreadPool {
     public static void main(String[] args) {
         ExecutorService executorService = getThreadPool(10);
 
-        for (int i = 0; i < 10000; i++) {
+        for (int i = 0; i < 100000; i++) {
             int finalI = i;
-            try {
-                Thread.sleep(1);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
             try {
                 executorService.execute(new Runnable() {
                     @Override
@@ -23,6 +18,13 @@ public class TestThreadPool {
                 });
             } catch (Exception e) {
                 System.out.println("emsg:" + e.getMessage());
+            }
+            if (i % 20 == 0) {
+                try {
+                    Thread.sleep(1);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         }
 
@@ -36,8 +38,8 @@ public class TestThreadPool {
     }
 
     public static ExecutorService getThreadPool(int queues) {
-        int cores = 50;
-        int threads = 400;
+        int cores = 150;
+        int threads = 800;
         int alive = 60 * 1000;
 
 
@@ -49,7 +51,7 @@ public class TestThreadPool {
 
     public static void doSomething(final int i) {
         try {
-            Thread.sleep(10);
+            Thread.sleep(5);
             System.out.println("thread:" + Thread.currentThread().getName() +  ", active:" + Thread.activeCount() + ", do:" + i);
         } catch (InterruptedException e) {
             e.printStackTrace();
