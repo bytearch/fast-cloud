@@ -13,6 +13,7 @@
         <module>fast-cloud-mysql-sharding</module>
         <module>fast-cloud-core</module>
         <module>fast-cloud-test</module>
+        <module>fast-cloud-auth</module>
     </modules>
 
     <properties>
