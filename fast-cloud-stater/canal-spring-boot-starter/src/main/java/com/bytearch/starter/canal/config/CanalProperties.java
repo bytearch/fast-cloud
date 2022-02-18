@@ -18,7 +18,7 @@ public class CanalProperties {
      * zookeeper: zk集群模式
      * simple: 简单直连模式
      */
-    private String mode;
+    private String mode = "simple";
 
     /**
      * canal-server地址 多个地址逗号隔开

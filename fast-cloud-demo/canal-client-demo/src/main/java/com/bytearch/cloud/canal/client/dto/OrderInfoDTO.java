@@ -1,7 +1,6 @@
 package com.bytearch.cloud.canal.client.dto;
 
 import com.bytearch.starter.canal.annotation.Column;
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.util.Date;
 
@@ -26,23 +25,20 @@ public class OrderInfoDTO {
     /**
      * 预约用车时间
      */
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     @Column(column = "booking_date")
-    private Date bookingDate;
+    private String bookingDate;
 
     /**
-     * 创建
+     * 创建时间
      */
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     @Column(column = "create_time")
-    private Date createTime;
+    private String createTime;
 
     /**
      * 更新时间
      */
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     @Column(column = "update_time")
-    private Date updateTime;
+    private String updateTime;
 
     @Override
     public String toString() {
