@@ -10,26 +10,43 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>fast-cloud-stater</module>
-        <module>fast-cloud-mysql-sharding</module>
         <module>fast-cloud-core</module>
-        <module>fast-cloud-test</module>
+        <module>fast-cloud-demo</module>
     </modules>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
-        <spring-boot.version>2.1.10.RELEASE</spring-boot.version>
+        <spring-boot-dependencies.version>2.3.2.RELEASE</spring-boot-dependencies.version>
+        <spring-cloud-dependencies.version>Hoxton.SR9</spring-cloud-dependencies.version>
+        <spring-cloud-alibaba-dependencies.version>2.2.6.RELEASE</spring-cloud-alibaba-dependencies.version>
         <lombok.version>1.16.16</lombok.version>
         <mango.version>1.6.0</mango.version>
         <apache.commons.lang3.version>3.3.2</apache.commons.lang3.version>
+        <rocketmq.client.version>4.1.0-incubating</rocketmq.client.version>
     </properties>
 
     <dependencyManagement>
+        <!-- spring-cloud 版本 选择见wiki: https://github.com/alibaba/spring-cloud-alibaba/wiki/%E7%89%88%E6%9C%AC%E8%AF%B4%E6%98%8E -->
         <dependencies>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring-boot.version}</version>
+                <version>${spring-boot-dependencies.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud-dependencies.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring-cloud-alibaba-dependencies.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -87,6 +104,20 @@
                 <artifactId>mysql-connector-java</artifactId>
                 <version>6.0.6</version>
             </dependency>
+
+            <!--rocketmq-client-->
+            <dependency>
+                <groupId>org.apache.rocketmq</groupId>
+                <artifactId>rocketmq-client</artifactId>
+                <version>${rocketmq.client.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.rocketmq</groupId>
+                <artifactId>rocketmq-common</artifactId>
+                <version>${rocketmq.client.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 </project>

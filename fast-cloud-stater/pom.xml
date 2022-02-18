@@ -12,14 +12,14 @@
     <artifactId>fast-cloud-stater</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>rocketmq-spring-boot-starter</module>
         <module>redis-spring-boot-starter</module>
         <module>dubbo-spring-boot-starter</module>
+        <module>canal-spring-boot-starter</module>
     </modules>
 
     <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
     </properties>
 
 </project>
