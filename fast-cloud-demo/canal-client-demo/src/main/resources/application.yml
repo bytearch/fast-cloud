@@ -12,6 +12,6 @@ canal:
     #   mode: zookeeper
     #   servers: 172.30.1.6:2181,172.30.1.7:2181,172.30.1.8:2181
     #   batchSize: 1000
-    #   #filter: order_center.car_fact_order
+    #   #filter: order_center.order_info
     #   destination: example
     #   getMessageTimeOutMS: 500
