@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.bytearch.fastcloud.idgenerator.spring.starter.IDGeneratorAutoConfiguration

@@ -4,6 +4,7 @@ import com.bytearch.fastcloud.core.idgenerator.IdGenerator;
 import com.bytearch.fastcloud.core.idgenerator.util.IpUtil;
 
 import java.util.HashMap;
+import java.util.function.LongSupplier;
 
 /**
  * 订单号生成器
@@ -53,6 +54,8 @@ public class IDGeneratorLocal implements IdGenerator {
      */
     private static long lastTimestamp = -1L;
 
+    private final LongSupplier workerIdSupplier;
+
     private static int ipSuffix = 0;
 
     static {
@@ -60,14 +63,30 @@ public class IDGeneratorLocal implements IdGenerator {
         ipSuffix = IpUtil.getIpSuffix();
     }
 
+
+    /**
+     * 实例化一个ID生成器, workerId=IP后三位
+     */
+    public IDGeneratorLocal() {
+        this.workerIdSupplier = () -> ipSuffix;
+    }
+
+    /**
+     * 实例化一个ID生成器, workerId=自定义
+     */
+    public IDGeneratorLocal(LongSupplier workerIdSupplier) {
+        this.workerIdSupplier = workerIdSupplier;
+    }
+
+
     @Override
     public long generate() {
-        return nextId(ipSuffix, 0L);
+        return nextId(workerIdSupplier.getAsLong(), 0L);
     }
 
     @Override
     public long generate(long extraData) {
-        return nextId(ipSuffix, extraData);
+        return nextId(workerIdSupplier.getAsLong(), extraData);
     }
 
     public long nextId(long workerId, long extraId) {

@@ -1,8 +1,10 @@
 package com.bytearch.fastcloud.core.idgenerator.register;
 
+import org.apache.curator.framework.recipes.locks.InterProcessLock;
+
 import java.util.List;
 
-public interface CoordinatorRegistryCenter {
+public interface CoordinatorRegistryCenter extends RegistryCenter{
     InterProcessLock lock(String key);
 
     /**

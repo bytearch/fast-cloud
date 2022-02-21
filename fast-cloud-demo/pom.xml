@@ -14,6 +14,7 @@
     <modules>
         <module>fast-cloud-mysql-sharding</module>
         <module>canal-client-demo</module>
+        <module>distribute-IDGenerator-demo</module>
     </modules>
 
     <properties>

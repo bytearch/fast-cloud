@@ -52,7 +52,7 @@ public interface IdGenerator {
     long decodeExtraDataFromId(final long id);
 
     /**
-     * 从id反解出 创建时间时间戳
+     * 从id反解出 时间戳
      */
     long decodeCreateDateFromID(final long id);
 }

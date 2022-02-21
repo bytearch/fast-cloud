@@ -3,24 +3,29 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>fast-cloud</artifactId>
+        <artifactId>fast-cloud-demo</artifactId>
         <groupId>com.bytearch</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>fast-cloud-stater</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>redis-spring-boot-starter</module>
-        <module>dubbo-spring-boot-starter</module>
-        <module>canal-spring-boot-starter</module>
-        <module>id-generator-spring-boot-starter</module>
-    </modules>
+    <artifactId>distribute-IDGenerator-demo</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.bytearch</groupId>
+            <artifactId>id-generator-spring-boot-starter</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 
 </project>
