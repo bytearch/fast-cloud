@@ -2,7 +2,6 @@ package com.bytearch.cloud.canal.client.dto;
 
 import com.bytearch.starter.canal.annotation.Column;
 
-import java.util.Date;
 
 public class OrderInfoDTO {
     /**
