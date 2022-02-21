@@ -15,6 +15,7 @@
     <modules>
         <module>fast-cloud-id-generator</module>
         <module>fast-cloud-redis</module>
+        <module>fast-cloud-id-generator-zk</module>
     </modules>
 
     <properties>
