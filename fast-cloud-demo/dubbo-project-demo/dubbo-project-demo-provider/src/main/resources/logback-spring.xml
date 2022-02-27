@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+    <springProperty scop="context" name="spring.application.name" source="spring.application.name" defaultValue=""/>
+    <property name="LOG_HOME" value="./log"/>
+    <property name="LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} %X{traceId} %X{orderNo} - %msg%n"/>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%X{traceId}] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="LOG_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_HOME}/logFile.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_HOME}/history/%d{yyyyMM,aux}/logFile.log.%d{yyyyMMdd}.%i.gz</fileNamePattern>
+            <maxFileSize>1024MB</maxFileSize>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <!--            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%X{traceId}] %-5level %logger{36} - %msg%n</pattern>-->
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+    <appender name ="ASYNC_FILE" class= "ch.qos.logback.classic.AsyncAppender">
+        <discardingThreshold >0</discardingThreshold>
+        <discardingThreshold>50</discardingThreshold>
+        <queueSize>1024</queueSize>
+        <maxFlushTime>500</maxFlushTime>
+        <appender-ref ref="LOG_FILE"/>
+    </appender>
+
+    <appender name="ERR_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_HOME}/error.log</file>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_HOME}/history/%d{yyyyMM,aux}/error.log.%d{yyyyMMdd}</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <!--            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%X{traceId}] %-5level %logger{36} - %msg%n</pattern>-->
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+    <appender name ="ASYNC_ERR_FILE" class= "ch.qos.logback.classic.AsyncAppender">
+        <discardingThreshold >0</discardingThreshold>
+        <queueSize>512</queueSize>
+        <appender-ref ref="ERR_FILE"/>
+    </appender>
+
+    <!--dubbo日志输入配置-->
+    <appender name="DUBBO" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_HOME}/dubbo.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_HOME}/history/%d{yyyyMM,aux}/dubbo.%d{yyyyMMdd}</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+    <appender name ="ASYNC_DUBBO" class= "ch.qos.logback.classic.AsyncAppender">
+        <discardingThreshold >0</discardingThreshold>
+        <queueSize>512</queueSize>
+        <appender-ref ref="DUBBO"/>
+    </appender>
+
+    <!--  stdout 输出到文件-->
+    <appender name="STDOUT_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_HOME}/stdout.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${LOG_HOME}/history/%d{yyyyMM,aux}/stdout.log.%d{yyyyMMdd}</FileNamePattern>
+            <maxHistory>10</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+    <appender name="STDOUT_FILE_async" class="ch.qos.logback.classic.AsyncAppender">
+        <discardingThreshold>50</discardingThreshold>
+        <neverBlock>true</neverBlock>
+        <maxFlushTime>500</maxFlushTime>
+        <queueSize>1024</queueSize>
+        <appender-ref ref="STDOUT_FILE"/>
+    </appender>
+    <!-- stderr 输出到文件 -->
+    <appender name="STDERR_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_HOME}/stderr.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${LOG_HOME}/history/%d{yyyyMM,aux}/stderr.log.%d{yyyyMMdd}</FileNamePattern>
+            <maxHistory>10</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+    <appender name="STDERR_FILE_async" class="ch.qos.logback.classic.AsyncAppender">
+        <discardingThreshold>50</discardingThreshold>
+        <neverBlock>true</neverBlock>
+        <maxFlushTime>500</maxFlushTime>
+        <queueSize>1024</queueSize>
+        <appender-ref ref="STDERR_FILE"/>
+    </appender>
+
+    <!--  所有环境默认日志  -->
+    <logger name="system.out" level="INFO" additivity="false">
+        <appender-ref ref="STDOUT_FILE_async"/>
+    </logger>
+    <logger name="system.err" level="INFO" additivity="false">
+        <appender-ref ref="STDERR_FILE_async"/>
+    </logger>
+    <root level="error">
+        <appender-ref ref="ASYNC_ERR_FILE" />
+    </root>
+
+    <!--开发环境日志配置-->
+    <springProfile name="dev">
+        <logger name="org.apache.dubbo" level="debug" >
+            <appender-ref ref="ASYNC_DUBBO"/>
+        </logger>
+    </springProfile>
+
+    <!--线上环境日志配置-->
+    <springProfile name="online">
+        <logger name="org.apache.dubbo" level="info" >
+            <appender-ref ref="ASYNC_DUBBO"/>
+        </logger>
+    </springProfile>
+
+</configuration>

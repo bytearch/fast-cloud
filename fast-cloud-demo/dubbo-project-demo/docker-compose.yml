@@ -1,0 +1,71 @@
+version: '3.5'
+services:
+  mysql:
+    image: hub.c.163.com/library/mysql:5.7
+    restart: always
+    container_name: "dubbo_project_mysql"
+    expose:
+      - 3306
+    environment:
+      TZ: Asia/Shanghai
+      MYSQL_ROOT_PASSWORD: root
+    command:
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_unicode_ci
+    volumes:
+      #- ./conf.d:/etc/mysql/conf.d
+      - ./data:/var/lib/mysql
+      - ./doc/initdb.d:/docker-entrypoint-initdb.d
+    networks:
+      default:
+       ipv4_address: 172.30.1.200
+  nacos:
+    image: nacos/nacos-server:v2.0.3
+    container_name: nacos
+    hostname: nacos
+    env_file:
+      - ./env/nacos-standlone-mysql.env
+    volumes:
+      - ./standalone-logs/:/home/nacos/logs
+      - ./init.d/custom.properties:/home/nacos/init.d/custom.properties
+    expose:
+      - 8848
+    depends_on:
+      - mysql
+    restart: always
+    networks:
+      default:
+        ipv4_address: 172.30.1.201
+  demo-provider:
+    build:
+      context: ./dubbo-project-demo-provider
+    image: hub.fdfs.site/public/dubbo-project-demo-provider:1.0
+    container_name: dubbo-project-demo-provider
+    hostname: dubbo-project-demo-provider
+    restart: always
+    #ports:
+    #  - "8001:8001"
+    depends_on:
+      - nacos
+    networks:
+      default:
+        ipv4_address: 172.30.1.203
+  demo-consumer:
+    build:
+      context: ./dubbo-project-demo-consumer
+    image: hub.fdfs.site/public/dubbo-project-demo-consumer:1.0
+    container_name: dubbo-project-demo-consumer
+    hostname: dubbo-project-demo-consumer
+    restart: always
+    ports:
+      - "8080:8080"
+    depends_on:
+      - demo-provider
+      - nacos
+    networks:
+      default:
+        ipv4_address: 172.30.1.204
+networks:
+    default:
+      external:
+        name: app-network

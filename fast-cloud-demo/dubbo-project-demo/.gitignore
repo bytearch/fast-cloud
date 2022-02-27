@@ -1,0 +1,9 @@
+.idea/
+data/
+dubbo-project-demo-api/dubbo-project-demo-api.iml
+dubbo-project-demo-provider/dubbo-project-demo-provider.iml
+dubbo-project-demo-api/target/
+dubbo-project-demo-consumer/target/
+dubbo-project-demo-provider/target/
+logs/
+standalone-logs/

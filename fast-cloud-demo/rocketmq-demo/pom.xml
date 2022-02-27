@@ -3,26 +3,27 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>fast-cloud</artifactId>
+        <artifactId>fast-cloud-demo</artifactId>
         <groupId>com.bytearch</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <packaging>pom</packaging>
 
-    <artifactId>fast-cloud-demo</artifactId>
-    <modules>
-        <module>fast-cloud-mysql-sharding</module>
-        <module>canal-client-demo</module>
-        <module>distribute-IDGenerator-demo</module>
-        <module>rocketmq-demo</module>
-        <module>sharding-jdbc-mysql-demo</module>
-        <module>dubbo-project-demo</module>
-    </modules>
+    <artifactId>rocketmq-demo</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.rocketmq</groupId>
+            <artifactId>rocketmq-spring-boot-starter</artifactId>
+        </dependency>
+    </dependencies>
 
 </project>

@@ -25,6 +25,10 @@
         <apache.commons.lang3.version>3.3.2</apache.commons.lang3.version>
         <rocketmq.client.version>4.1.0-incubating</rocketmq.client.version>
         <apache.curator.version>2.10.0</apache.curator.version>
+        <commons.lang3.version>3.12.0</commons.lang3.version>
+        <dubbo.version>2.7.7</dubbo.version>
+        <dubbo-registry-nacos.version>2.7.7</dubbo-registry-nacos.version>
+        <nacos-client.version>2.0.3</nacos-client.version>
     </properties>
 
     <dependencyManagement>
@@ -153,6 +157,45 @@
                 <version>20.0</version>
             </dependency>
 
+            <!-- https://mvnrepository.com/artifact/org.apache.shardingsphere/sharding-jdbc-spring-boot-starter -->
+            <dependency>
+                <groupId>org.apache.shardingsphere</groupId>
+                <artifactId>sharding-jdbc-spring-boot-starter</artifactId>
+                <version>4.1.1</version>
+            </dependency>
+
+            <!-- Druid连接池 -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>1.1.20</version>
+            </dependency>
+
+            <!-- MybatisPlus -->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>3.0.5</version>
+            </dependency>
+
+            <!-- nacos -->
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo-registry-nacos</artifactId>
+                <version>${dubbo-registry-nacos.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.nacos</groupId>
+                <artifactId>nacos-client</artifactId>
+                <version>${nacos-client.version}</version>
+            </dependency>
+
+            <!--dubbo-->
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo-spring-boot-starter</artifactId>
+                <version>${dubbo.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 </project>

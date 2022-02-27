@@ -1,6 +1,6 @@
 #分布式ID生成器配置
 id-generator:
-  serverLists: {ip:改成你的ZK地址}:2181
+  serverLists: 172.30.1.6:2181,172.30.1.7:2181,172.30.1.8:2181
   namespace: demo_generator
   workersBackUpFile: ./id_worker.json
   workersBackUpInterval: 10
